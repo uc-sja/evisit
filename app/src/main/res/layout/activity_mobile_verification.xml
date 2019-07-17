@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/screen1compressed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MobileVerification">
+
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="?attr/actionBarSize"></android.support.v7.widget.Toolbar>-->
+
+    <ImageView
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/logo"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/logo_evisit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_above="@id/btn_layout"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/title_text"
+            android:text="Verification"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:textAllCaps="true"
+            android:textColor="@color/colorBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:text="Enter Mobile"
+            android:textSize="14sp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:background="@drawable/user_input"
+            android:id="@+id/edit_mobile"
+            android:padding="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Enter OTP"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            />
+
+            <!--<EditText-->
+                <!--android:layout_weight="2"-->
+                <!--android:padding="15dp"-->
+                <!--android:background="@drawable/user_input"-->
+                <!--android:id="@+id/edit_otp"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:maxLines="1"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginStart="10dp"-->
+                <!--android:layout_height="wrap_content" />-->
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content">
+
+                <com.mukesh.OtpView
+                    android:id="@+id/otp_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:itemBackground="@drawable/otp_view_background"
+                    android:textColor="@android:color/darker_gray"
+                    app:itemCount="4"
+                    app:itemWidth="35dp"
+                    app:lineColor="@color/off_white"
+                    app:lineWidth="0dp"
+                    app:viewType="line" />
+
+            </LinearLayout>
+
+
+
+            <!--<View-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="1dp"-->
+                <!--&gt;</View>-->
+
+            <Button
+                android:layout_toLeftOf="@id/otp_view"
+                android:background="@drawable/btn_style"
+                android:padding="8dp"
+                android:textSize="12sp"
+                android:id="@+id/request_otp_btn"
+                android:layout_width="0dp"
+                android:layout_weight="2.5"
+                android:textAllCaps="false"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:textColor="@color/colorWhite"
+                android:text="Request OTP"
+                android:layout_height="wrap_content" />
+
+
+            <Button
+                android:padding="8dp"
+                android:layout_weight="2.5"
+                android:layout_toLeftOf="@+id/request_otp_btn"
+                android:textSize="12sp"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/btn_style"
+                android:id="@+id/verify_otp_btn"
+                android:layout_width="0dp"
+                android:layout_marginLeft="5dp"
+                android:text="Verify"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
