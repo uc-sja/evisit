@@ -49,22 +49,37 @@ public class VerificationActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
+
+        StringBuilder sb = new StringBuilder();
+
         e1.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+                if(sb.length()==0){
+                    e1.requestFocus();
+                } else {
+                    e1.setText(sb.charAt(0));
+                }
+            }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
 //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if(sb.length()==1){
+                    sb.deleteCharAt(0);
+                }
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                if(s.length() == 1){
+                if(sb.length()==0 && s.length() == 1){
+                    sb.append(s);
+                    e1.clearFocus();
                     e2.requestFocus();
+                    e2.setCursorVisible(true);
 //                    mTxtVer2.setBackgroundResource(R.drawable.round_textedit_blackfilled);
                 }
             }

@@ -36,9 +36,10 @@ public class PreVerification extends AppCompatActivity {
             }
         });
         setupListeners();
-
     }
+
     private void setupListeners() {
+
         et1.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -59,6 +60,7 @@ public class PreVerification extends AppCompatActivity {
                 }
             }
         });
+
         et2.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -79,6 +81,7 @@ public class PreVerification extends AppCompatActivity {
                 }
             }
         });
+
         et3.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -99,6 +102,7 @@ public class PreVerification extends AppCompatActivity {
                 }
             }
         });
+
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_PIC_REQUEST) {
@@ -111,6 +115,5 @@ public class PreVerification extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
     }
 }

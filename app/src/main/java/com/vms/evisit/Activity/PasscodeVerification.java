@@ -32,8 +32,6 @@ public class PasscodeVerification extends AppCompatActivity {
     }
 
     private void setupListeners() {
-
-
         et1.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -95,5 +93,4 @@ public class PasscodeVerification extends AppCompatActivity {
             }
         });
     }
-
 }

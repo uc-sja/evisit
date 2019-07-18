@@ -40,13 +40,9 @@ public class MobileVerification extends AppCompatActivity {
         } else {
             // Remember that you should never show the action bar if the
             // status bar is hidden, so hide that too if necessary.
-
-
             ActionBar actionBar = getSupportActionBar();
             actionBar.hide();
             // Hide the status bar.
-
-
 
 //            final int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 //                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
