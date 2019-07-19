@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
             //                }
             //        });
 
-                passcode_id = findViewById(R.id.passcode_id);
-                mobile_id = findViewById(R.id.mobile_id);
+                passcode_id = findViewById(R.id.pass_iv);
+                mobile_id = findViewById(R.id.call_iv);
 
                 mobile_id.setOnClickListener(new View.OnClickListener() {
                     @Override

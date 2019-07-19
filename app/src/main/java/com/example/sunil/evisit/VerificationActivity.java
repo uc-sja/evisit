@@ -1,13 +1,17 @@
 package com.example.sunil.evisit;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.vms.evisit.R;
 
@@ -21,6 +25,7 @@ public class VerificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verification);
+        Toast.makeText(VerificationActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
 
         e1= (EditText)findViewById(R.id.e1);
         e2 = (EditText)findViewById(R.id.e2);
@@ -80,10 +85,11 @@ public class VerificationActivity extends AppCompatActivity {
                     e1.clearFocus();
                     e2.requestFocus();
                     e2.setCursorVisible(true);
-//                    mTxtVer2.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+//                    mTxtVer2.setBackgroundResource(R.drawable.round_text edit_blackfilled);
                 }
             }
         });
+
         e2.addTextChangedListener(new TextWatcher() {
 
             @Override
