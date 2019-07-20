@@ -1,6 +1,7 @@
 package com.vms.evisit.Activity;
 
 import android.os.Build;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,18 +47,10 @@ public class PasscodeVerification extends AppCompatActivity {
 
     private void setupListeners() {
         StringBuilder sb = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
-        StringBuilder sb3 = new StringBuilder();
-        StringBuilder sb4= new StringBuilder();
-
 
         et1.addTextChangedListener(new TextWatcher() {
-
             @Override
             public void afterTextChanged(Editable s) {
-                if(sb.length()==0){
-                    et1.requestFocus();
-                }
             }
 
             @Override
@@ -77,17 +70,24 @@ public class PasscodeVerification extends AppCompatActivity {
                     et1.clearFocus();
                     et2.requestFocus();
                     et2.setCursorVisible(true);
-//                    mTxtVer2.setBackgroundResource(R.drawable.round_textedit_blackfilled);
                 }
             }
         });
 
+        et1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(checkEmptyPin(v)){
+                    return true;
+                } else{
+                return false;
+            }
+        }});
+
         et2.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
-                if(sb.length()==0){
-                    et1.requestFocus();
-                }
+                Log.d(TAG, "afterTextChanged: "+sb);
             }
 
             @Override
@@ -97,6 +97,8 @@ public class PasscodeVerification extends AppCompatActivity {
                 if(sb.length() == 1){
                     sb.deleteCharAt(0);
                 }
+                Log.d(TAG, "beforeTextChanged: "+sb);
+
             }
 
             @Override
@@ -109,15 +111,41 @@ public class PasscodeVerification extends AppCompatActivity {
                     et3.setCursorVisible(true);
 //                    mTxtVer2.setBackgroundResource(R.drawable.round_textedit_blackfilled);
                 }
+                Log.d(TAG, "onTextChanged: "+sb);
+
             }
         });
-        et3.addTextChangedListener(new TextWatcher() {
 
+        et2.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                Log.d(TAG, "onKey: e2 keycode "+keyCode);
+                Log.d(TAG, "onKey: e2 eventkeycode "+ event.getKeyCode());
+                Log.d(TAG, "onKey: e2"+event.getAction());
+                if((event.getAction() == KeyEvent.ACTION_UP)  && keyCode == KeyEvent.KEYCODE_DEL && et2.getText().length()==0){
+                    Log.d(TAG, "onKey: action up");
+                    et1.requestFocus();
+                    et1.getText().clear();
+
+                }
+                return false;
+            }
+        });
+
+        et2.setOnTouchListener(new View.OnTouchListener() {
+                                   @Override
+                                   public boolean onTouch(View v, MotionEvent event) {
+                                       if(checkEmptyPin(v)){return true;} else{
+                                           return false;
+                                       }
+                                   }
+                               }
+        );
+
+        et3.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
-                if(sb.length()==0){
-                    et2.requestFocus();
-                }
+
             }
 
             @Override
@@ -142,6 +170,29 @@ public class PasscodeVerification extends AppCompatActivity {
             }
         });
 
+        et3.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                Log.d(TAG, "onKey: e3 keycode "+keyCode);
+                Log.d(TAG, "onKey: e3 eventkeycode "+ event.getKeyCode());
+                if((event.getAction() == KeyEvent.ACTION_UP)  && keyCode == KeyEvent.KEYCODE_DEL && et3.getText().length()==0){
+                    et2.requestFocus();
+                    et2.getText().clear();
+
+                }
+                return false;
+            }
+        });
+
+        et3.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(checkEmptyPin(v)){return true;} else{
+                    return false;
+                }
+            }
+        });
+
         et4.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -160,12 +211,55 @@ public class PasscodeVerification extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(sb.length()==0){
+            }
+        });
+
+        et4.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if((event.getAction() == KeyEvent.ACTION_UP)  && keyCode == KeyEvent.KEYCODE_DEL && et4.getText().length()==0){
                     et3.requestFocus();
+                    et3.getText().clear();
+                }
+                return false;
+            }
+        });
+
+        et4.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(checkEmptyPin(v)){return true;} else{
+                    return false;
                 }
             }
         });
     }
 
+    private Boolean checkEmptyPin(View v) {
+        EditText editText = (EditText)v;
 
+        if(editText.getText().length()>0){
+            return true;
+        }
+
+        if (et1.getText().length() == 0) {
+            editText.clearFocus();
+            et1.requestFocus();
+            et1.setCursorVisible(true);
+            return true;
+        }
+        else if (et2.getText().length() == 0) {
+            editText.clearFocus();
+            et2.requestFocus();
+            et2.setCursorVisible(true);
+            return true;
+        }
+        else if (et3.getText().length() == 0) {
+            editText.clearFocus();
+            et3.requestFocus();
+            et3.setCursorVisible(true);
+            return true;
+        }
+       return false;
+    }
 }
