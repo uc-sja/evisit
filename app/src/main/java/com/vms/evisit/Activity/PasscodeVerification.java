@@ -1,7 +1,7 @@
 package com.vms.evisit.Activity;
 
+import android.content.Context;
 import android.os.Build;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,6 +23,8 @@ public class PasscodeVerification extends AppCompatActivity {
     EditText et1,et2,et3,et4;
     private static final int CAMERA_PIC_REQUEST = 3;
     private static final String TAG = "PasscodeVerification";
+    private boolean lastBoxEmpty;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +50,7 @@ public class PasscodeVerification extends AppCompatActivity {
 
     private void setupListeners() {
         StringBuilder sb = new StringBuilder();
-
+            lastBoxEmpty = false;
         et1.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -98,7 +101,6 @@ public class PasscodeVerification extends AppCompatActivity {
                     sb.deleteCharAt(0);
                 }
                 Log.d(TAG, "beforeTextChanged: "+sb);
-
             }
 
             @Override
@@ -112,7 +114,6 @@ public class PasscodeVerification extends AppCompatActivity {
 //                    mTxtVer2.setBackgroundResource(R.drawable.round_textedit_blackfilled);
                 }
                 Log.d(TAG, "onTextChanged: "+sb);
-
             }
         });
 
@@ -133,13 +134,13 @@ public class PasscodeVerification extends AppCompatActivity {
         });
 
         et2.setOnTouchListener(new View.OnTouchListener() {
-                                   @Override
-                                   public boolean onTouch(View v, MotionEvent event) {
-                                       if(checkEmptyPin(v)){return true;} else{
-                                           return false;
-                                       }
-                                   }
-                               }
+               @Override
+               public boolean onTouch(View v, MotionEvent event) {
+                   if(checkEmptyPin(v)){return true;} else{
+                       return false;
+                   }
+               }
+           }
         );
 
         et3.addTextChangedListener(new TextWatcher() {
@@ -176,9 +177,9 @@ public class PasscodeVerification extends AppCompatActivity {
                 Log.d(TAG, "onKey: e3 keycode "+keyCode);
                 Log.d(TAG, "onKey: e3 eventkeycode "+ event.getKeyCode());
                 if((event.getAction() == KeyEvent.ACTION_UP)  && keyCode == KeyEvent.KEYCODE_DEL && et3.getText().length()==0){
+                    Log.d(TAG, "onKey: e3 + action up ");
                     et2.requestFocus();
                     et2.getText().clear();
-
                 }
                 return false;
             }
@@ -209,17 +210,32 @@ public class PasscodeVerification extends AppCompatActivity {
                 }
             }
 
+            //lastboxEmpty flag is used because cursor does not move forward for the last box,
+            //hence, if backspace is hit, when the last edit box has a value, its value gets deleted
+            //but simultaneously keylister event(the checks for empty box) for last edittext is also activated
+            //resultingg in deletion of the second last edittext.
+
             @Override
             public void afterTextChanged(Editable s) {
+                Log.d(TAG, "afterTextChanged: ");
+                if(sb.length()==0){
+                    et4.requestFocus();
+                    lastBoxEmpty = true;
+                }
             }
+
         });
 
         et4.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if((event.getAction() == KeyEvent.ACTION_UP)  && keyCode == KeyEvent.KEYCODE_DEL && et4.getText().length()==0){
+                Log.d(TAG, "onKey: delete key");
+                if((event.getAction() == KeyEvent.ACTION_UP)  && keyCode == KeyEvent.KEYCODE_DEL && et4.getText().length()==0 && !lastBoxEmpty){
+                    Log.d(TAG, "onKey: deleted size 0");
                     et3.requestFocus();
                     et3.getText().clear();
+                 } else if(((event.getAction() == KeyEvent.ACTION_UP)  && keyCode == KeyEvent.KEYCODE_DEL && et4.getText().length()==0 && lastBoxEmpty)){
+                    lastBoxEmpty = !lastBoxEmpty;
                 }
                 return false;
             }
@@ -239,13 +255,20 @@ public class PasscodeVerification extends AppCompatActivity {
         EditText editText = (EditText)v;
 
         if(editText.getText().length()>0){
-            return true;
+            if(editText.getId()==R.id.et4){
+                return false;
+            } else {
+                return true;
+            }
         }
 
         if (et1.getText().length() == 0) {
             editText.clearFocus();
             et1.requestFocus();
             et1.setCursorVisible(true);
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(et1, InputMethodManager.SHOW_IMPLICIT);
+
             return true;
         }
         else if (et2.getText().length() == 0) {

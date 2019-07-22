@@ -1,28 +1,26 @@
 package com.vms.evisit.Activity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
-import com.mukesh.OnOtpCompletionListener;
 import com.mukesh.OtpView;
 import com.vms.evisit.R;
 
-public class MobileVerification extends AppCompatActivity {
+public class MobileVerification extends AppCompatActivity implements TextWatcher {
     OtpView edit_otp;
     private boolean isFormatting;
     private boolean deletingHyphen;
@@ -35,6 +33,7 @@ public class MobileVerification extends AppCompatActivity {
     private EditText[] mobile_input;
     private EditText[] otp_input;
     private int j;
+    Boolean lastMobileBoxWasFilled = false, lastOtpBoxWasFilled=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +56,7 @@ public class MobileVerification extends AppCompatActivity {
         req_e3 = findViewById(R.id.req_et3);
         req_e4 = findViewById(R.id.req_et4);
 
-        if(Build.VERSION.SDK_INT < 16){
+        if (Build.VERSION.SDK_INT < 16) {
 //            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         } else {
             // Remember that you should never show the action bar if the
@@ -85,54 +84,29 @@ public class MobileVerification extends AppCompatActivity {
 
         }
 
-        mobile_input = new EditText[]{e1,e2,e3,e4,e5,e6,e7,e8,e9,e10};
-
-        otp_input = new EditText[]{req_e1,req_e2,req_e3,req_e4};
+        mobile_input = new EditText[]{e1, e2, e3, e4, e5, e6, e7, e8, e9, e10};
+        otp_input = new EditText[]{req_e1, req_e2, req_e3, req_e4};
 
         StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < mobile_input.length; i++){
-            j = i;
+        StringBuilder stringBuilder2 = new StringBuilder();
+        for (int i = 0; i < mobile_input.length; i++) {
+
             mobile_input[i].setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    return checkIfEmptyPin(v, mobile_input);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(e1, InputMethodManager.SHOW_IMPLICIT);
+
+                    return  checkIfEmptyPin(v, mobile_input);
                 }
             });
 
 
-            Log.d(TAG, "onCreate: value "+j);
-            mobile_input[j].addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    if (stringBuilder.length() == 1) {
-                        stringBuilder.deleteCharAt(0);
-                    }
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    Log.d(TAG, "onTextChanged: value of j "+j);
-                    if(mobile_input[j]){
-                        if(stringBuilder.length()==0 && s.length()==1){
-                            stringBuilder.append(s);
-                            mobile_input[j].requestFocus();
-                        }
-                    }
-                    else if(stringBuilder.length()==0 && s.length()==1){
-                        stringBuilder.append(s);
-                        mobile_input[j].clearFocus();
-                        mobile_input[j+1].requestFocus();
-                        mobile_input[j+1].setCursorVisible(true);
-                    }
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                }
-            });
+            Log.d(TAG, "onCreate: value " + j);
         }
 
-        for(int i = 0; i < otp_input.length; i++){
+
+        for (int i = 0; i < otp_input.length; i++) {
             otp_input[i].setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -150,12 +124,544 @@ public class MobileVerification extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        e1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e1.clearFocus();
+                    e2.requestFocus();
+                    e2.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        e2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e2.clearFocus();
+                    e3.requestFocus();
+                    e3.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+        e3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e3.clearFocus();
+                    e4.requestFocus();
+                    e4.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+
+        e4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e4.clearFocus();
+                    e5.requestFocus();
+                    e5.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+        e5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e5.clearFocus();
+                    e6.requestFocus();
+                    e6.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+
+        e6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e6.clearFocus();
+                    e7.requestFocus();
+                    e7.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+
+        e7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e7.clearFocus();
+                    e8.requestFocus();
+                    e8.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+
+        e8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e8.clearFocus();
+                    e9.requestFocus();
+                    e9.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+        e9.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e9.clearFocus();
+                    e10.requestFocus();
+                    e10.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+
+        e10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder.length() == 1) {
+                    stringBuilder.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder.length() == 0 && s.length() == 1) {
+                    stringBuilder.append(s);
+                    e10.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(stringBuilder.length()==0){
+                    e10.requestFocus();
+                    lastMobileBoxWasFilled = true;
+                }
+            }
+
+        });
+
+
+        e2.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e2.getText().length() == 0) {
+                    e1.requestFocus();
+                    e1.getText().clear();
+                }
+                return false;
+            }
+        });
+
+        e2.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e2.getText().length() == 0) {
+                    e1.requestFocus();
+                    e1.getText().clear();
+                }
+                return false;
+            }
+        });
+
+        e3.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e3.getText().length() == 0) {
+                    e2.requestFocus();
+                    e2.getText().clear();
+                }
+                return false;
+            }
+        });
+
+        e4.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e4.getText().length() == 0) {
+                    e3.requestFocus();
+                    e3.getText().clear();
+                }
+                return false;
+            }
+        });
+
+        e5.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e5.getText().length() == 0) {
+                    e4.requestFocus();
+                    e4.getText().clear();
+                }
+                return false;
+            }
+        });
+
+        e6.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e6.getText().length() == 0) {
+                    e5.requestFocus();
+                    e5.getText().clear();
+                }
+                return false;
+            }
+        });
+
+
+        e7.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e7.getText().length() == 0) {
+                    e6.requestFocus();
+                    e6.getText().clear();
+                }
+                return false;
+            }
+        });
+
+        e8.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e8.getText().length() == 0) {
+                    e7.requestFocus();
+                    e7.getText().clear();
+                }
+                return false;
+            }
+        });
+
+        e9.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e9.getText().length() == 0) {
+                    e8.requestFocus();
+                    e8.getText().clear();
+                }
+                return false;
+            }
+        });
+
+
+        e10.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e10.getText().length() == 0 && !lastMobileBoxWasFilled) {
+                    e9.requestFocus();
+                    e9.getText().clear();
+                } else if((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && e10.getText().length() == 0 && lastMobileBoxWasFilled){
+                    lastMobileBoxWasFilled = !lastMobileBoxWasFilled;
+                }
+                return false;
+            }
+        });
+
+        req_e2.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && req_e2.getText().length() == 0) {
+                    req_e1.requestFocus();
+                    req_e1.getText().clear();
+                }
+                return false;
+            }
+        });
+
+        req_e3.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && req_e3.getText().length() == 0) {
+                    req_e2.requestFocus();
+                    req_e2.getText().clear();
+                }
+                return false;
+            }
+        });
+
+
+        req_e4.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_UP) && keyCode == KeyEvent.KEYCODE_DEL && req_e4.getText().length() == 0 && !lastOtpBoxWasFilled) {
+                    req_e3.requestFocus();
+                    req_e3.getText().clear();
+                } else if(event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_DEL && req_e4.getText().length() == 0 && lastOtpBoxWasFilled) {
+                    lastOtpBoxWasFilled = !lastOtpBoxWasFilled;
+                }
+                return false;
+            }
+        });
+
+
+        req_e1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder2.length() == 1) {
+                    stringBuilder2.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder2.length() == 0 && s.length() == 1) {
+                    stringBuilder2.append(s);
+                    req_e1.clearFocus();
+                    req_e2.requestFocus();
+                    req_e2.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+
+        req_e2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder2.length() == 1) {
+                    stringBuilder2.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder2.length() == 0 && s.length() == 1) {
+                    stringBuilder2.append(s);
+                    req_e2.clearFocus();
+                    req_e3.requestFocus();
+                    req_e3.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+
+        req_e3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder2.length() == 1) {
+                    stringBuilder2.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder2.length() == 0 && s.length() == 1) {
+                    stringBuilder2.append(s);
+                    req_e3.clearFocus();
+                    req_e4.requestFocus();
+                    req_e4.setCursorVisible(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+        });
+
+
+        req_e4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //                et1.setBackgroundResource(R.drawable.round_textedit_blackfilled);
+                if (stringBuilder2.length() == 1) {
+                    stringBuilder2.deleteCharAt(0);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (stringBuilder2.length() == 0 && s.length() == 1) {
+                    stringBuilder2.append(s);
+                    req_e4.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(stringBuilder2.length() == 0){
+                    req_e4.requestFocus();
+                    lastOtpBoxWasFilled = true;
+                }
+            }
+        });
     }
+
+
 
     private boolean checkIfEmptyPin(View v,EditText input_array[] ) {
         EditText editText = (EditText) v;
-        if(editText.getText().length()>1){
-            return true;
+
+        //So that we can rebring the keyboard if all fields are filled and keyboard is hidden
+        if(editText.getText().length()>0){
+            if(editText.getId()==input_array[input_array.length-1].getId()){
+                return false;
+            } else {
+                return true;
+            }
         }
         boolean return_value = false;
 
@@ -163,11 +669,29 @@ public class MobileVerification extends AppCompatActivity {
             if(input_array[i].getText().length()==0){
                 editText.clearFocus();
                 input_array[i].requestFocus();
-                input_array[i].setCursorVisible(true);
-                    return_value = true;
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(input_array[i], InputMethodManager.SHOW_IMPLICIT);
+                return_value = true;
                 break;
             }
         }
+
+
         return return_value;
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
     }
 }
