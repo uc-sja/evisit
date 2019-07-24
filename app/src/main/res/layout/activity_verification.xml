@@ -110,15 +110,10 @@
                             android:gravity="center"
                             android:textColor="#9e9e9e"
                             android:inputType="number"
+                            android:layout_gravity="center"
                             android:maxLength="1"
                             android:digits="123456789"
                             />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -134,15 +129,11 @@
                             android:textColor="#9e9e9e"
                             android:inputType="number"
                             android:maxLength="1"
+                            android:layout_gravity="center"
                             android:digits="123456789"
 
                             />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -157,15 +148,11 @@
                             android:gravity="center"
                             android:textColor="#9e9e9e"
                             android:inputType="number"
+                            android:layout_gravity="center"
                             android:maxLength="1"
                             android:digits="123456789"
                              />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -179,16 +166,12 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:textColor="#9e9e9e"
+                            android:layout_gravity="center"
                             android:maxLength="1"
                             android:digits="123456789"
                             android:inputType="number"
                              />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -204,14 +187,10 @@
                             android:textColor="#9e9e9e"
                             android:maxLength="1"
                             android:digits="123456789"
+                            android:layout_gravity="center"
                             android:inputType="number"
                            />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -227,14 +206,10 @@
                             android:textColor="#9e9e9e"
                             android:maxLength="1"
                             android:digits="123456789"
+                            android:layout_gravity="center"
                             android:inputType="number"
                              />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -249,15 +224,11 @@
                             android:gravity="center"
                             android:textColor="#9e9e9e"
                             android:maxLength="1"
+                            android:layout_gravity="center"
                             android:digits="123456789"
                             android:inputType="number"
                           />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -272,15 +243,11 @@
                             android:gravity="center"
                             android:textColor="#9e9e9e"
                             android:maxLength="1"
+                            android:layout_gravity="center"
                             android:digits="123456789"
                             android:inputType="number"
                             />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -294,16 +261,12 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:textColor="#9e9e9e"
+                            android:layout_gravity="center"
                             android:maxLength="1"
                             android:digits="123456789"
                             android:inputType="number"
                              />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -319,14 +282,9 @@
                             android:textColor="#9e9e9e"
                             android:maxLength="1"
                             android:digits="123456789"
+                            android:layout_gravity="center"
                             android:inputType="number"
                             />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
@@ -411,16 +369,10 @@
                             android:gravity="center"
                             android:textColor="#9e9e9e"
                             android:inputType="number"
+                            android:layout_gravity="center"
                             android:maxLength="1"
                             android:digits="123456789"
-
                             />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -435,16 +387,11 @@
                             android:gravity="center"
                             android:textColor="#9e9e9e"
                             android:inputType="number"
+                            android:layout_gravity="center"
                             android:maxLength="1"
                             android:digits="123456789"
 
                             />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -460,14 +407,9 @@
                             android:textColor="#9e9e9e"
                             android:inputType="number"
                             android:maxLength="1"
+                            android:layout_gravity="center"
                             android:digits="123456789"
                              />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_weight="1"
@@ -483,14 +425,9 @@
                             android:textColor="#9e9e9e"
                             android:maxLength="1"
                             android:digits="123456789"
+                            android:layout_gravity="center"
                             android:inputType="number"
                              />
-                        <View
-                            android:layout_width="10dp"
-                            android:layout_height="3dp"
-                            android:background="#9e9e9e"
-                            android:gravity="center"
-                            android:layout_marginBottom="5dp"/>
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
@@ -512,7 +449,7 @@
                 android:layout_marginHorizontal="50dp"
                 android:gravity="center"
                 android:layout_weight="1"
-                >x`
+                >
 
                     <TextView
                         android:id="@+id/verify"

@@ -81,20 +81,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <LinearLayout
+        <LinearLayout
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <LinearLayout
+                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:app="htt  p://schemas.android.com/apk/res-auto"
                     android:id="@+id/visitor_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
                     android:layout_gravity="center"
                     android:layout_centerInParent="true"
                     android:src="@mipmap/baby_pic"
@@ -116,7 +118,7 @@
                         android:textColor="#000000"
                         android:textStyle="normal"
                         android:gravity="start"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="Mobile:" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -124,7 +126,7 @@
                         android:textColor="#000000"
                         android:textStyle="normal"
                         android:gravity="start"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="9990999012" />
                 </LinearLayout>
                 <LinearLayout
@@ -138,7 +140,7 @@
                         android:textColor="#000000"
                         android:textStyle="normal"
                         android:gravity="start"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="Name:" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -146,7 +148,7 @@
                         android:textColor="#000000"
                         android:textStyle="normal"
                         android:gravity="center"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="Emma Watson" />
                 </LinearLayout>
                 <LinearLayout
@@ -160,7 +162,7 @@
                         android:textColor="#000000"
                         android:textStyle="normal"
                         android:gravity="start"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="Company Name:" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -168,7 +170,7 @@
                         android:textColor="#000000"
                         android:textStyle="normal"
                         android:gravity="start"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="Teckmovers" />
                 </LinearLayout>
                 <LinearLayout
@@ -182,7 +184,7 @@
                         android:textColor="#000000"
                         android:textStyle="normal"
                         android:gravity="start"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="Meeting With:" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -190,7 +192,7 @@
                         android:textColor="#000000"
                         android:textStyle="normal"
                         android:gravity="center"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="Jason Stathum" />
                 </LinearLayout>
                 <LinearLayout
@@ -204,7 +206,7 @@
                         android:textColor="#000000"
                         android:textStyle="normal"
                         android:gravity="start"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="Check In:" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -213,7 +215,7 @@
                         android:textStyle="normal"
                         android:textAlignment="textStart"
                         android:gravity="start"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:text="DD/MM/YYYY at 12:30 pm" />
 
                 </LinearLayout>
@@ -239,9 +241,18 @@
                 android:gravity="center"
                 android:text="Checked in Successfully" />
 
-
-
-
+            <TextView
+                android:id="@+id/print_photo"
+                android:layout_width="wrap_content"
+                android:paddingHorizontal="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/solid_rac"
+                android:textColor="#FFFF"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Print" />
 
         </LinearLayout>
 

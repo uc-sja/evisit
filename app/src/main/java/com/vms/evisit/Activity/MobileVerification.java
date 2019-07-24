@@ -90,21 +90,16 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder2 = new StringBuilder();
         for (int i = 0; i < mobile_input.length; i++) {
-
             mobile_input[i].setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.showSoftInput(e1, InputMethodManager.SHOW_IMPLICIT);
-
                     return  checkIfEmptyPin(v, mobile_input);
                 }
             });
-
-
             Log.d(TAG, "onCreate: value " + j);
         }
-
 
         for (int i = 0; i < otp_input.length; i++) {
             otp_input[i].setOnTouchListener(new View.OnTouchListener() {
@@ -116,7 +111,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
         }
 
         verifyOtpBtn = findViewById(R.id.request_otp_btn);
-
         verifyOtpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,7 +196,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
 
         });
 
-
         e4.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -255,7 +248,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
 
         });
 
-
         e6.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -281,7 +273,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
             }
 
         });
-
 
         e7.addTextChangedListener(new TextWatcher() {
             @Override
@@ -309,7 +300,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
 
         });
 
-
         e8.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -331,7 +321,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
 
         });
@@ -357,11 +346,8 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
-
         });
-
 
         e10.addTextChangedListener(new TextWatcher() {
             @Override
@@ -387,9 +373,7 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
                     lastMobileBoxWasFilled = true;
                 }
             }
-
         });
-
 
         e2.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -457,7 +441,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
             }
         });
 
-
         e7.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -490,7 +473,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
                 return false;
             }
         });
-
 
         e10.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -527,7 +509,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
             }
         });
 
-
         req_e4.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -540,7 +521,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
                 return false;
             }
         });
-
 
         req_e1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -563,11 +543,9 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
 
         });
-
 
         req_e2.addTextChangedListener(new TextWatcher() {
             @Override
@@ -595,7 +573,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
 
         });
 
-
         req_e3.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -617,11 +594,9 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
 
         });
-
 
         req_e4.addTextChangedListener(new TextWatcher() {
             @Override
@@ -651,10 +626,9 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
     }
 
 
-
     private boolean checkIfEmptyPin(View v,EditText input_array[] ) {
         EditText editText = (EditText) v;
-
+        boolean return_value = false;
         //So that we can rebring the keyboard if all fields are filled and keyboard is hidden
         if(editText.getText().length()>0){
             if(editText.getId()==input_array[input_array.length-1].getId()){
@@ -663,7 +637,7 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
                 return true;
             }
         }
-        boolean return_value = false;
+
 
         for(int i = 0; i < input_array.length; i++){
             if(input_array[i].getText().length()==0){
@@ -675,8 +649,6 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
                 break;
             }
         }
-
-
         return return_value;
     }
 

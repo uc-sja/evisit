@@ -44,4 +44,5 @@
     <color name="colorHotRed">#FF6347</color>
     <color name="darkOrange">#f35933</color>
     <color name="overlayDark">#000000</color>
+    <color name="bright_green">#33cc33</color>
 </resources>

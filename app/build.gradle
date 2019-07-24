@@ -45,5 +45,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
 
+    implementation 'com.github.aabhasr1:OtpView:c3a664d77d'
+
+
 
 }

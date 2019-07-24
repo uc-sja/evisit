@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class ChosePhotoActivity extends AppCompatActivity {
     TextView recapture, enter;
     Bitmap bitmap;
     private int CAMERA_REQUEST_CODE = 1014;
+    private static final String TAG = "ChosePhotoActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,11 @@ public class ChosePhotoActivity extends AppCompatActivity {
             circleImageView.setImageBitmap(bitmap);
         }
 
+        if(bitmap == null){
+            circleImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_user));
+            Log.d(TAG, "onCreate: no intent");
+        }
+
         recapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +83,7 @@ public class ChosePhotoActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
                  Intent intent = new Intent(ChosePhotoActivity.this, SuceessCheckIn.class);
-                 intent.putExtra("bitmap", new Gson().toJson(bitmap));
+                 intent.putExtra("bitmap", getIntent().getStringExtra("bitmap"));
                  startActivity(intent);
              }
          });

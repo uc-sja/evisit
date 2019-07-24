@@ -15,6 +15,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SuceessCheckIn extends AppCompatActivity {
 
     CircleImageView visitor_image;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +24,12 @@ public class SuceessCheckIn extends AppCompatActivity {
         visitor_image = findViewById(R.id.visitor_image);
 
         if(getIntent() != null){
-            Bitmap bitmap = new Gson().fromJson(getIntent().getStringExtra("bitmap"), Bitmap.class);
+            bitmap = new Gson().fromJson(getIntent().getStringExtra("bitmap"), Bitmap.class);
             visitor_image.setImageBitmap(bitmap);
+        }
+
+        if(bitmap == null){
+            visitor_image.setImageDrawable(getResources().getDrawable(R.drawable.ic_user));
         }
 
         if(Build.VERSION.SDK_INT < 16){
