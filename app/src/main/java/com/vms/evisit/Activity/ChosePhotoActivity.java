@@ -45,7 +45,6 @@ public class ChosePhotoActivity extends AppCompatActivity {
         } else {
             // Remember that you should never show the action bar if the
             // status bar is hidden, so hide that too if necessary.
-
             ActionBar actionBar = getSupportActionBar();
             actionBar.hide();
             // Hide the status bar.

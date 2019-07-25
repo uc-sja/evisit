@@ -46,6 +46,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
 
     implementation 'com.github.aabhasr1:OtpView:c3a664d77d'
+    implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.1'
+
 
 
 
