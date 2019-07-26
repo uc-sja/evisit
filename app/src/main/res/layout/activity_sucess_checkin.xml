@@ -1,11 +1,19 @@
 <RelativeLayout
+    android:id="@+id/root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/screen1compressed"
+    android:background="@color/white"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     tools:context=".Activity.MobileVerification">
+
+
+    <RelativeLayout
+        android:background="@drawable/screen1compressed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <!--<android.support.v7.widget.Toolbar-->
     <!--android:id="@+id/toolbar"-->
@@ -247,4 +255,6 @@
 
 
     </LinearLayout>
+    </RelativeLayout>
+
 </RelativeLayout>
