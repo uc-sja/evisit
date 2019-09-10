@@ -40,7 +40,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.0.3'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
@@ -48,8 +47,9 @@ dependencies {
     implementation 'com.github.aabhasr1:OtpView:c3a664d77d'
     implementation 'com.itextpdf:itextg:5.5.10'
 
-
-
+    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.0.3'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 
 
 }

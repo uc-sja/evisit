@@ -130,6 +130,7 @@ public class VerificationActivity extends AppCompatActivity {
                 }
             }
         });
+
         e4.addTextChangedListener(new TextWatcher() {
 
             @Override

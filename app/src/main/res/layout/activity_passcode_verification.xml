@@ -83,8 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginHorizontal="20dp"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -99,91 +98,32 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/border_layout"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:weightSum="4"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/ractangle"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:weightSum="4">
 
-                    <LinearLayout
+                    <com.mukesh.OtpView
+                        android:id="@+id/otp_view"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-                        <EditText
-                            android:id="@+id/et1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:digits="1234567890 "
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLength="1"
-                            android:textColor="#9e9e9e" />
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:itemBackground="@color/transparent"
+                        android:textColor="@color/bg_circle_default"
+                        app:itemCount="4"
+                        android:layout_gravity="center"
+                        app:itemSpacing="20dp"
+                        app:itemWidth="16dp"
+                        android:gravity="center"
+                        app:itemHeight="35dp"
+                        android:layout_marginBottom="0dp"
+                        app:lineColor="@android:color/darker_gray"
+                        app:viewType="line" />
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/et2"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:digits="1234567890"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:maxLength="1"
-                            android:textColor="#9e9e9e" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/et3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:digits="1234567890"
-                            android:gravity="center"
-                            android:inputType="number"
-                            android:layout_gravity="center"
-                            android:maxLength="1"
-                            android:textColor="#9e9e9e" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <EditText
-                            android:id="@+id/et4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:digits="1234567890"
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:inputType="number"
-                            android:maxLength="1"
-                            android:textColor="#9e9e9e" />
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -217,6 +157,147 @@
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
-</LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/veri_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:id="@+id/camerai"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/ractangle"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et1i"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:digits="1234567890 "
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:textColor="#9e9e9e" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et2i"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:digits="1234567890"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:textColor="#9e9e9e" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et3i"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:digits="1234567890"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:textColor="#9e9e9e" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/et4i"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:digits="1234567890"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:maxLength="1"
+                            android:textColor="#9e9e9e" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/pass_layouti"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/per_verifyi"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/solid_rac"
+                        android:gravity="center"
+                        android:text="Verify"
+                        android:textColor="#FFFF" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
