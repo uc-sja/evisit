@@ -1,23 +1,20 @@
 package com.vms.evisit.Activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mukesh.OtpView;
 import com.vms.evisit.R;
 
 public class PasscodeVerification extends AppCompatActivity {
@@ -26,6 +23,8 @@ public class PasscodeVerification extends AppCompatActivity {
     private static final int CAMERA_PIC_REQUEST = 3;
     private static final String TAG = "PasscodeVerification";
     private boolean lastBoxEmpty;
+    OtpView otpView;
+    RelativeLayout camera_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +41,32 @@ public class PasscodeVerification extends AppCompatActivity {
             // Hide the status bar.
         }
 
-        per_verify = (TextView)findViewById(R.id.per_verify);
+        camera_layout = findViewById(R.id.camera_layout);
+        per_verify = (TextView)findViewById(R.id.request_otp);
         et1= (EditText)findViewById(R.id.et1);
         et2= (EditText)findViewById(R.id.et2);
         et3= (EditText)findViewById(R.id.et3);
         et4= (EditText)findViewById(R.id.et4);
 
+        otpView = findViewById(R.id.otp_layout);
+
+
+        //this listener is used so that we can access this layout only after it has been loaded,
+        //otherwise we won't be able to get the size of the layout
+        otpView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                otpView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                Log.d(TAG, "onGlobalLayout: "+camera_layout.getWidth());
+                Log.d(TAG, "onGlobalLayout otpitemwidth: "+otpView.getItemWidth());
+                otpView.setItemWidth(camera_layout.getWidth()/42);
+                otpView.setItemSpacing(camera_layout.getWidth()/5);
+
+            }
+        });
+
 //        setupListeners();
+
     }
 
 //    private void setupListeners() {
@@ -293,4 +311,5 @@ public class PasscodeVerification extends AppCompatActivity {
         }
        return false;
     }
+
 }

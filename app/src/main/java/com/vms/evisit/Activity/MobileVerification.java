@@ -10,12 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 
 import com.mukesh.OtpView;
 import com.vms.evisit.R;
@@ -23,14 +23,15 @@ import com.vms.evisit.R;
 public class MobileVerification extends AppCompatActivity implements TextWatcher {
     OtpView edit_otp;
     private static final String TAG = "MobileVerification";
-    private Button verifyOtpBtn;
+    private RelativeLayout verifyOtpBtn;
+    private OtpView otp_verification_view, mobile, enter_mobile_view;
+    private RelativeLayout enter_mobile_layout;
+    private RelativeLayout mobile_ver_layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile_verification);
-
-
 
         if (Build.VERSION.SDK_INT < 16) {
 //            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -64,6 +65,39 @@ public class MobileVerification extends AppCompatActivity implements TextWatcher
         StringBuilder stringBuilder2 = new StringBuilder();
 
 
+        otp_verification_view = findViewById(R.id.otp_verification_view);
+        enter_mobile_view = findViewById(R.id.enter_mobile_view);
+        enter_mobile_layout = findViewById(R.id.otp_layout);
+        mobile_ver_layout = findViewById(R.id.mobile_ver_layout);
+
+        //this listener is used so that we can access this layout only after it has been loaded,
+        //otherwise we won't be able to get the size of the layout
+        otp_verification_view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                otp_verification_view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                Log.d(TAG, "onGlobalLayout: "+mobile_ver_layout.getWidth());
+                Log.d(TAG, "onGlobalLayout otpitemwidth: "+otp_verification_view.getItemWidth());
+                otp_verification_view.setItemWidth(mobile_ver_layout.getWidth()/42);
+                otp_verification_view.setItemSpacing(mobile_ver_layout.getWidth()/5);
+
+            }
+        });
+
+
+        //we divide by 21 because the total count of dashes + spaces in a 10 digit layout is 21
+
+        enter_mobile_view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                enter_mobile_view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                Log.d(TAG, "onGlobalLayout: "+enter_mobile_view.getWidth());
+                Log.d(TAG, "onGlobalLayout otpitemwidth: "+enter_mobile_view.getItemWidth());
+                enter_mobile_view.setItemWidth(enter_mobile_layout.getWidth()/42);
+                enter_mobile_view.setItemSpacing(enter_mobile_layout.getWidth()/14);
+
+            }
+        });
 
         verifyOtpBtn = findViewById(R.id.request_otp_btn);
         verifyOtpBtn.setOnClickListener(new View.OnClickListener() {

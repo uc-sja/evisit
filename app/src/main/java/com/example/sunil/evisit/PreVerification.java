@@ -22,7 +22,7 @@ public class PreVerification extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_verification);
 
-        per_verify = (TextView)findViewById(R.id.per_verify);
+        per_verify = (TextView)findViewById(R.id.request_otp);
         et1= (EditText)findViewById(R.id.et1);
         et2= (EditText)findViewById(R.id.et2);
         et3= (EditText)findViewById(R.id.et3);

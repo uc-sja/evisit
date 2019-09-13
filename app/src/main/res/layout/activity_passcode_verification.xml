@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/screen1compressed"
     android:layout_width="match_parent"
+    android:paddingRight="@dimen/_40sdp"
+    android:paddingLeft="@dimen/_40sdp"
     android:layout_height="match_parent"
     tools:context=".Activity.MobileVerification">
 
@@ -72,43 +74,33 @@
                 android:textStyle="normal"
                 android:gravity="start"
                 android:text="Enter Pass Code" />
-
-
-
-
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ver_layout"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_centerInParent="true"
             android:layout_marginHorizontal="20dp"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="10">
 
-            <RelativeLayout
-                android:id="@+id/camera"
+                                    <RelativeLayout
+                android:id="@+id/camera_layout"
+                android:background="@drawable/ractangle"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="7"
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
-                android:layout_weight="1"
                 >
 
-                <LinearLayout
-                    android:id="@+id/border_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/ractangle"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:weightSum="4">
-
                     <com.mukesh.OtpView
-                        android:id="@+id/otp_view"
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="4"
+                        android:id="@+id/otp_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="number"
@@ -116,8 +108,6 @@
                         android:textColor="@color/bg_circle_default"
                         app:itemCount="4"
                         android:layout_gravity="center"
-                        app:itemSpacing="20dp"
-                        app:itemWidth="16dp"
                         android:gravity="center"
                         app:itemHeight="35dp"
                         android:layout_marginBottom="0dp"
@@ -125,7 +115,6 @@
                         app:viewType="line" />
 
 
-                </LinearLayout>
 
             </RelativeLayout>
 
@@ -137,7 +126,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 >
 
                 <LinearLayout
@@ -147,7 +136,7 @@
                     android:orientation="vertical"
                     >
                     <TextView
-                        android:id="@+id/per_verify"
+                        android:id="@+id/request_otp"
                         android:layout_width="match_parent"
                         android:background="@drawable/solid_rac"
                         android:layout_height="50dp"

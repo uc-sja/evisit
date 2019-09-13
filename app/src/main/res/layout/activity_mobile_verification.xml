@@ -6,7 +6,9 @@
     android:background="@drawable/screen1compressed"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MobileVerification">
+    android:paddingLeft="@dimen/_40sdp"
+    android:paddingRight="@dimen/_40sdp"
+        tools:context=".Activity.MobileVerification">
 
     <!--<android.support.v7.widget.Toolbar-->
     <!--android:id="@+id/toolbar"-->
@@ -73,22 +75,14 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/otp_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/otp_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/ractangle"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="20dp"
                     android:gravity="center">
 
-                    <LinearLayout
-                        android:id="@+id/enter_mobile_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_centerHorizontal="true"
-                        android:background="@drawable/ractangle"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:weightSum="4">
 
                         <com.mukesh.OtpView
                             android:id="@+id/enter_mobile_view"
@@ -99,43 +93,19 @@
                             android:textColor="@color/bg_circle_default"
                             app:itemCount="10"
                             android:layout_gravity="center"
-                            app:itemSpacing="@dimen/_20sdp"
-                            app:itemWidth="@dimen/_16sdp"
                             android:gravity="center"
-                            app:itemHeight="@dimen/_35sdp"
+                            android:layout_centerHorizontal="true"
+                            app:itemHeight="35dp"
                             android:layout_marginBottom="0dp"
                             app:lineColor="@android:color/darker_gray"
                             app:viewType="line" />
 
 
-                    </LinearLayout>
 
                 </RelativeLayout>
 
 
 
-            <RelativeLayout
-                android:id="@+id/pass_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/otp_view"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginVertical="20dp"
-                android:gravity="center">
-
-                <TextView
-                    android:id="@+id/per_verify"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@drawable/solid_rac"
-                    android:gravity="center"
-                    android:paddingHorizontal="50dp"
-                    android:text="Request OTP"
-                    android:textColor="#FFF"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -143,7 +113,7 @@
             android:text="Enter OTP"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/_40sdp"
             android:layout_gravity="left"
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
@@ -152,69 +122,83 @@
 
         <RelativeLayout
             android:layout_marginTop="10dp"
-            android:layout_marginRight="15dp"
-
-            android:layout_marginHorizontal="20dp"
             android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_height="wrap_content">
-            />
+
 
 
             <RelativeLayout
-                android:id="@+id/camera"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/request_otp_btn"
+                android:id="@+id/mobile_ver_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@+id/pass_layout"
+                android:background="@drawable/ractangle">
 
 
-                <LinearLayout
-                    android:id="@+id/border_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/ractangle"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:weightSum="4">
+                <com.mukesh.OtpView
+                    android:id="@+id/otp_verification_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:inputType="number"
+                    android:itemBackground="@color/transparent"
+                    android:textColor="@color/bg_circle_default"
+                    app:itemCount="4"
+                    app:itemHeight="35dp"
+                    app:lineColor="@android:color/darker_gray"
+                    app:viewType="line" />
 
-                    <com.mukesh.OtpView
-                        android:id="@+id/otp_verification_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:itemBackground="@color/transparent"
-                        android:textColor="@color/bg_circle_default"
-                        app:itemCount="4"
-                        android:layout_gravity="center"
-                        app:itemSpacing="50dp"
-                        app:itemWidth="16dp"
-                        android:gravity="center"
-                        app:itemHeight="35dp"
-                        android:layout_marginBottom="0dp"
-                        app:lineColor="@android:color/darker_gray"
-                        app:viewType="line" />
-
-
-                </LinearLayout>
 
             </RelativeLayout>
 
-            <Button
-                android:layout_marginLeft="10dp"
-                android:layout_centerVertical="true"
-                android:background="@drawable/btn_style"
-                android:padding="8dp"
-                android:textSize="12sp"
+
+            <RelativeLayout
+                android:id="@+id/pass_layout"
+                android:layout_toLeftOf="@+id/request_otp_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/request_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/solid_rac"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:textStyle="bold"
+                    android:text="Request OTP"
+                    android:textColor="#FFF"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/request_otp_btn"
                 android:layout_width="wrap_content"
-                android:textAllCaps="false"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/colorWhite"
-                android:text="Verify"
-                android:layout_height="wrap_content" />
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/verify_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/solid_rac"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="20dp"
+                    android:text="Verify"
+                    android:textColor="#FFF"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+
 
         </RelativeLayout>
 
